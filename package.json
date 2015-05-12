@@ -1,6 +1,6 @@
 {
   "name": "react-data-components",
-  "version": "0.4.0",
+  "version": "1.0.0",
   "description": "React data components",
   "keywords": [
     "react",
@@ -38,7 +38,8 @@
   "scripts": {
     "prepublish": "jsx --harmony --no-cache-dir src lib",
     "start": "cd example && webpack-dev-server -d --progress --colors --hot --inline",
-    "test": "jest"
+    "test": "jest",
+    "buildlib": "./node_modules/react-tools/bin/jsx --harmony --no-cache-dir src lib"
   },
   "jest": {
     "rootDir": "src",
