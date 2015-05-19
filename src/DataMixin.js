@@ -89,6 +89,10 @@ module.exports = {
     };
   },
 
+  allData() {
+    return this.state.data
+  },
+
   onChangePage(pageNumber) {
     this.setState({ currentPage: pageNumber });
   },
