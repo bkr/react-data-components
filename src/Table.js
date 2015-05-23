@@ -46,17 +46,6 @@ class Table {
     this._headers = [];
   }
 
-  componentDidMount() {
-    // If no width was specified, then set the width that the browser applied
-    // initially to avoid recalculating width between pages.
-    this._headers.forEach(header => {
-      var thDom = React.findDOMNode(header);
-      if (!thDom.style.width) {
-        thDom.style.width = `${thDom.offsetWidth}px`;
-      }
-    });
-  }
-
   render() {
     var { columns, keys, buildRowOptions, sortBy, onSort } = this.props;
 
@@ -74,7 +63,6 @@ class Table {
         <th
           ref={c => this._headers[idx] = c}
           key={idx}
-          style={{width: col.width}}
           role="columnheader"
           scope="col"
           {...sortProps}>
