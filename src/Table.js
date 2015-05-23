@@ -19,9 +19,12 @@ var getCellValue =
 
 var getCellClass =
   ({ prop, className }, row) =>
-    !isEmpty(prop) && isEmpty(row[prop]) ? 'empty-cell' :
-      typeof className === 'function' ? className(row[prop], row) :
-      className;
+    [
+      prop.replace("_", "-"),
+      !isEmpty(prop) && isEmpty(row[prop]) ? 'empty-cell' :
+        typeof className === 'function' ? className(row[prop], row) :
+        className
+    ].filter((c) => c).join(" ");
 
 function buildSortProps(col, sortBy, onSort) {
   var order = sortBy.prop === col.prop ? sortBy.order : 'none';
@@ -65,6 +68,7 @@ class Table {
           key={idx}
           role="columnheader"
           scope="col"
+          className={col.prop.replace("_", "-")}
           {...sortProps}>
           <span>{col.title}</span>
           {typeof order !== 'undefined' ?
