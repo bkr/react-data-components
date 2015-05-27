@@ -26,6 +26,15 @@ var getCellClass =
         className
     ].filter((c) => c).join(" ");
 
+var getThProps =
+  ({ thProps }) =>
+    thProps ? thProps() : {}
+
+var getTdProps =
+  ({ tdProps }, row) =>
+    tdProps ? tdProps(row) : {}
+ 
+
 function buildSortProps(col, sortBy, onSort) {
   var order = sortBy.prop === col.prop ? sortBy.order : 'none';
   var nextOrder = order === 'ascending' ? 'descending' : 'ascending';
@@ -69,6 +78,7 @@ class Table {
           role="columnheader"
           scope="col"
           className={col.prop.replace("_", "-")}
+          {...getThProps(col)}
           {...sortProps}>
           <span>{col.title}</span>
           {typeof order !== 'undefined' ?
@@ -84,7 +94,7 @@ class Table {
         <tr key={getKeys(row)} {...buildRowOptions(row)}>
           {columns.map(
             (col, i) =>
-              <td key={i} className={getCellClass(col, row)}>
+              <td key={i} className={getCellClass(col, row)} {...getTdProps(col, row)}>
                 {getCellValue(col, row)}
               </td>
           )}
