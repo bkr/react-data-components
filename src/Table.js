@@ -70,6 +70,8 @@ class Table {
         order = sortProps['aria-sort'];
       }
 
+      var thContent = col.thContent ? col.thContent : <span>{col.title}</span>
+
       return (
         <th
           ref={c => this._headers[idx] = c}
@@ -79,7 +81,7 @@ class Table {
           className={col.prop.replace("_", "-")}
           {...getThProps(col)}
           {...sortProps}>
-          <span>{col.title}</span>
+          {thContent}
           {typeof order !== 'undefined' ?
             <span className={`sort-icon sort-${order}`} aria-hidden="true" /> :
             null}
