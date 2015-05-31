@@ -32,6 +32,10 @@ var orderValues =
     if (isEmpty(val1) && isEmpty(val2)) { return 0 }
     if (isEmpty(val1)) { return isAscending ? 1 : -1 }
     if (isEmpty(val2)) { return isAscending ? -1 : 1 }
+
+    if (typeof(val1) === "string") { val1 = val1.toLowerCase() }
+    if (typeof(val2) === "string") { val2 = val2.toLowerCase() }
+
     if (val1 < val2) { return isAscending ? -1 : 1 }
     if (val1 > val2) { return isAscending ? 1 : -1 }
     return 0
