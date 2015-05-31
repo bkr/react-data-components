@@ -36,11 +36,11 @@ module.exports = {
 
   componentWillReceiveProps(nextProps) {
     var {filterValues, sortBy} = this.state;
-    var {filters} = this.props;
+    var {filters, secondarySortBy } = this.props;
 
     var newInitialData = nextProps.initialData.slice(0);
     var newData = filter(filters, filterValues, newInitialData);
-    newData = sort(sortBy, newData);
+    newData = sort(sortBy, secondarySortBy, newData);
 
     this.setState({
       data: newData
@@ -51,24 +51,24 @@ module.exports = {
     // Do the initial sorting if specified.
     var {sortBy, data} = this.state;
     if (sortBy) {
-      this.setState({ data: sort(sortBy, data) });
+      this.setState({ data: sort(sortBy, this.props.secondarySortBy, data) });
     }
   },
 
   onSort(sortBy) {
     this.setState({
       sortBy: sortBy,
-      data: sort(sortBy, this.state.data)
+      data: sort(sortBy, this.props.secondarySortBy, this.state.data)
     });
   },
 
   onFilter(filterName, filterValue) {
     var {filterValues, sortBy} = this.state;
-    var {initialData, filters} = this.props;
+    var {initialData, filters, secondarySortBy} = this.props;
 
     filterValues[filterName] = filterValue;
     var newData = filter(filters, filterValues, initialData);
-    newData = sort(sortBy, newData);
+    newData = sort(sortBy, secondarySortBy, newData);
 
     this.setState({
       data: newData,
