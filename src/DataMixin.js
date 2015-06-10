@@ -55,7 +55,8 @@ module.exports = {
     }
   },
 
-  onSort(sortBy) {
+  onSort(sortBy, event) {
+    event.target.focus()
     this.setState({
       sortBy: sortBy,
       currentPage: 0,

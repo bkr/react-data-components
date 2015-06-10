@@ -70,7 +70,7 @@ class Table {
         order = sortProps['aria-sort'];
       }
 
-      var thContent = col.thContent ? col.thContent : <span>{col.title}</span>
+      var thContent = col.thContent ? col.thContent : <span tabIndex="0">{col.title}</span>
 
       return (
         <th
