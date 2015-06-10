@@ -58,6 +58,7 @@ module.exports = {
   onSort(sortBy) {
     this.setState({
       sortBy: sortBy,
+      currentPage: 0,
       data: sort(sortBy, this.props.secondarySortBy, this.state.data)
     });
   },
