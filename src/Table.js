@@ -10,8 +10,10 @@ var isEmpty = value => value === undefined || value === null || value === '';
 
 var getCellValue =
   ({ prop, defaultContent, render }, row) =>
-    // Return `defaultContent` if the value is empty.
-    !isEmpty(prop) && isEmpty(row[prop]) ? defaultContent :
+    // Use the render function if the value is empty and 'render' is present
+    !isEmpty(prop) && isEmpty(row[prop]) ? render ? render(row[prop], row) :
+      // else use defaultContent
+      defaultContent :
       // Use the render function for the value.
       render ? render(row[prop], row) :
       // Otherwise just return the value.
