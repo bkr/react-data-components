@@ -9,15 +9,15 @@ var keyGetter = keys => data => keys.map(key => data[key]);
 var isEmpty = value => value === undefined || value === null || value === '';
 
 var getCellValue =
-  ({ prop, defaultContent, render }, row) =>
-    // Use the render function if the value is empty and 'render' is present
-    !isEmpty(prop) && isEmpty(row[prop]) ? render ? render(row[prop], row) :
-      // else use defaultContent
-      defaultContent :
-      // Use the render function for the value.
-      render ? render(row[prop], row) :
-      // Otherwise just return the value.
-      row[prop];
+  ({ prop, defaultContent, render }, row) => {
+    // If value is empty, use defaultContent or the render function, whichever is present
+    if (!isEmpty(prop) && isEmpty(row[prop])) {
+      return !isEmpty(defaultContent) ? defaultContent : undefined || render ? render(row[prop], row) : undefined
+    } else {
+      // else use render or the row value.
+      return render ? render(row[prop], row) : row[prop]
+    }
+  }
 
 var getCellClass =
   ({ prop, className }, row) =>
