@@ -176,7 +176,7 @@ Table.propTypes = {
 
 Table.defaultProps = {
   buildRowOptions: () => ({}),
-  sortBy: {}
+  sortBy: {},
   isLoading: false,
 };
 
