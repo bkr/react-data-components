@@ -117,7 +117,9 @@ class Table {
         <tbody>
           {rows.length > 0 ? rows :
             <tr>
-              <td colSpan={columns.length} className="text-center">No data</td>
+              <td colSpan={columns.length} className="text-center">
+                {this.props.isLoading ? 'Loading data' : 'No data'}
+              </td>
             </tr>}
         </tbody>
       </table>
@@ -167,12 +169,15 @@ Table.propTypes = {
     order: PropTypes.oneOf([ 'ascending', 'descending' ])
   }),
 
-  onSort: PropTypes.func
+  onSort: PropTypes.func,
+
+  isLoading: PropTypes.bool,
 };
 
 Table.defaultProps = {
   buildRowOptions: () => ({}),
   sortBy: {}
+  isLoading: false,
 };
 
 module.exports = Table;
