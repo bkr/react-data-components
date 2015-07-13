@@ -118,7 +118,7 @@ class Table {
           {rows.length > 0 ? rows :
             <tr>
               <td colSpan={columns.length} className="text-center">
-                {this.props.isLoading ? 'Loading data' : 'No data'}
+                {this.props.isLoading && !this.props.hasLoaded ? 'Loading data' : 'No data'}
               </td>
             </tr>}
         </tbody>
@@ -178,6 +178,7 @@ Table.defaultProps = {
   buildRowOptions: () => ({}),
   sortBy: {},
   isLoading: false,
+  hasLoaded: false,
 };
 
 module.exports = Table;
