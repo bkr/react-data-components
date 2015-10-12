@@ -38,9 +38,9 @@ var getTdProps =
  
 
 function buildSortProps(col, sortBy, onSort) {
-  var order = sortBy.prop === col.prop ? sortBy.order : 'none';
+  var order = (sortBy.colProp || sortBy.prop) === col.prop ? sortBy.order : 'none';
   var nextOrder = order === 'ascending' ? 'descending' : 'ascending';
-  var sortEvent = onSort.bind(null, { prop: col.prop, order: nextOrder });
+  var sortEvent = onSort.bind(null, { prop: col.sortProp || col.prop, order: nextOrder, colProp: col.prop });
 
   return {
     'onClick': sortEvent,
