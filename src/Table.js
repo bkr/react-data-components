@@ -80,7 +80,7 @@ class Table {
           key={idx}
           role="columnheader"
           scope="col"
-          className={col.prop.replace("_", "-")}
+          className={col.prop.replace("_", "-") + (col.sortable !== false ? ' sortable' : '')}
           {...getThProps(col)}
           {...sortProps}>
           {thContent}
