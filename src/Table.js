@@ -73,7 +73,16 @@ class Table {
         order = sortProps['aria-sort'];
       }
 
-      var thContent = col.thContent ? col.thContent : <span tabIndex="0">{col.title}</span>
+      var thContent;
+      if (col.thContent) {
+        if (typeof col.thContent === 'function') {
+          thContent = col.thContent()
+        } else {
+          thContent = col.thContent
+        }
+      } else {
+        thContent = <span tabIndex="0">{col.title}</span>;
+      }
 
       return (
         <th
