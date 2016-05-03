@@ -1,3 +1,13 @@
+# Rafter Release Process
+
+* make pull request for changes in feature branch and merge into master
+* merge master into release
+* run 'npm run-script buildlib'
+* update version in package.json
+* check in package.json and lib changes
+* push
+
+
 # react-data-components
 
 DataTable: [Live demo and source](http://jsbin.com/ziyawu/6/)
