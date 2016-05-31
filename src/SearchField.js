@@ -2,7 +2,7 @@
 
 var React = require('react');
 
-class SearchField {
+class SearchField extends React.Component {
 
   constructor() {
     this.onChange = this.onChange.bind(this);

@@ -6,7 +6,7 @@ var { PropTypes } = React;
 // Used to cancel events.
 var preventDefault = e => e.preventDefault();
 
-class Pagination {
+class Pagination extends React.Component {
 
   shouldComponentUpdate(nextProps) {
     var props = this.props;

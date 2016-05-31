@@ -54,7 +54,7 @@ function buildSortProps(col, sortBy, onSort) {
   };
 }
 
-class Table {
+class Table extends React.Component {
 
   constructor() {
     this._headers = [];
