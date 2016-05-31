@@ -22,7 +22,7 @@
     "url": "https://github.com/carlosrocha/react-data-components"
   },
   "peerDependencies": {
-    "react": "^0.13.0"
+    "react": "^0.14.0"
   },
   "devDependencies": {
     "css-loader": "^0.7.1",
