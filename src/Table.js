@@ -36,7 +36,6 @@ var getTdProps =
   ({ tdProps }, row) =>
     tdProps ? tdProps(row) : {}
  
-
 function buildSortProps(col, sortBy, onSort) {
   var order = (sortBy.colProp || sortBy.prop) === col.prop ? sortBy.order : 'none';
   var nextOrder = order === 'ascending' ? 'descending' : 'ascending';
@@ -54,7 +53,7 @@ function buildSortProps(col, sortBy, onSort) {
   };
 }
 
-class Table {
+class Table extends React.Component {
 
   constructor() {
     this._headers = [];
