@@ -25,6 +25,15 @@ function some(pred, obj) {
 var isEmpty =
     (val) => { return val === null || val === undefined || val === ""; }
 
+var scrubString = (val) => {
+  var priceMatches = val.match(/^\$([\d,]*(\.\d{2})?)$/)
+  if (priceMatches) {
+    return parseFloat(priceMatches[1])  // the match excluding the $ 
+  } else {
+    return val.toLowerCase()
+  }
+}
+
 var orderValues =
   (val1, val2, sortBy) => {
     var isAscending = (sortBy.order !== "descending")
@@ -33,8 +42,8 @@ var orderValues =
     if (isEmpty(val1)) { return isAscending ? 1 : -1 }
     if (isEmpty(val2)) { return isAscending ? -1 : 1 }
 
-    if (typeof(val1) === "string") { val1 = val1.toLowerCase() }
-    if (typeof(val2) === "string") { val2 = val2.toLowerCase() }
+    if (typeof(val1) === "string") { val1 = scrubString(val1) }
+    if (typeof(val2) === "string") { val2 = scrubString(val2) }
 
     if (val1 < val2) { return isAscending ? -1 : 1 }
     if (val1 > val2) { return isAscending ? 1 : -1 }
