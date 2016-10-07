@@ -20,12 +20,14 @@ var getCellValue =
   }
 
 var getCellClass =
-  ({ prop, className }, row) =>
+  ({ prop, className, rightAlign }, row) =>
     [
-      prop.replace("_", "-"),
+      prop.replace("_", "-"),   // this can ultimately be retired
+      prop.replace(/_/g, "-").replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase(),
       !isEmpty(prop) && isEmpty(row[prop]) ? 'empty-cell' :
         typeof className === 'function' ? className(row[prop], row) :
-        className
+        className,
+      rightAlign ? 'right-align' : null
     ].filter((c) => c).join(" ");
 
 var getThProps =
@@ -35,7 +37,7 @@ var getThProps =
 var getTdProps =
   ({ tdProps }, row) =>
     tdProps ? tdProps(row) : {}
- 
+
 function buildSortProps(col, sortBy, onSort) {
   var order = (sortBy.colProp || sortBy.prop) === col.prop ? sortBy.order : 'none';
   var nextOrder = order === 'ascending' ? 'descending' : 'ascending';
@@ -89,7 +91,7 @@ class Table extends React.Component {
           key={idx}
           role="columnheader"
           scope="col"
-          className={col.prop.replace("_", "-") + (col.sortable !== false ? ' sortable' : '')}
+          className={col.prop.replace("_", "-") + (col.sortable !== false ? ' sortable' : '') + (col.rightAlign ? ' right-align' : '')}
           {...getThProps(col)}
           {...sortProps}>
           {thContent}
